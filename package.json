@@ -94,5 +94,9 @@
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "awesome-typescript-loader": "^2.2.4",
+    "d3": "^4.3.0"
   }
 }
