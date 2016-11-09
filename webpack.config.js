@@ -14,9 +14,38 @@ module.exports = {
     }],
     loaders: [{
       test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/
-    }]
+    }],
+    rules: [
+      {
+          enforce: 'pre',
+          test: /\.js$/,
+          loader: 'source-map',
+          exclude: /(node_modules)/
+        },
+        {
+          enforce: 'pre',
+          test: /\.ts$/,
+          loader: 'tslint',
+          exclude: /(node_modules|release|dist)/
+        },
+        {
+          test: /\.ts$/,
+          loader: 'awesome-typescript-loader',
+          exclude: /(node_modules)/
+        },
+        {
+          test: /\.scss$/,
+          loaders: [
+            'style',
+            'css?sourceMap',
+            'postcss?sourceMap',
+            'sass?sourceMap'
+          ]
+        }
+    ]
   },
   resolve: {
+    modules: ['node_modules'],
     extensions: ['', '.ts', '.js']
   },
   devServer: {
