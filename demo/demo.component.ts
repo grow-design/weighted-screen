@@ -2,6 +2,6 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'demo-app',
-  template: '<hello-world></hello-world>'
+  template: '<weighted-screen></weighted-screen>',
 })
 export class Demo {}

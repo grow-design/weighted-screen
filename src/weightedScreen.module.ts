@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HelloWorld} from './helloWorld.component';
+import {HelloWorld} from './weightedScreen.component';
 
 @NgModule({
   declarations: [
