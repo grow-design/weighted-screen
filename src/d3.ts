@@ -6,6 +6,7 @@ let color = require("d3-color");
 let force = require("d3-force");
 let format = require("d3-format");
 let interpolate = require("d3-interpolate");
+let request = require("d3-request");
 let scales = require("d3-scale");
 let selection = require("d3-selection");
 let shape = require("d3-shape");
@@ -17,6 +18,7 @@ export default {
   brush: brush.brush,
   brushX: brush.brushX,
   brushY: brush.brushY,
+  color: color,
   event: selection.event,
   extent: array.extent,
   forceCollide: force.forceCollide,
@@ -33,17 +35,11 @@ export default {
   mouse: selection.mouse,
   pie: shape.pie,
   range: array.range,
-  rgb: color.rgb,
+  request: request,
   selection: selection,
   select: selection.select,
   selectAll: selection.selectAll,
-  scaleBand: scales.scaleBand,
-  scaleLinear: scales.scaleLinear,
-  scaleOrdinal: scales.scaleOrdinal,
-  scalePoint: scales.scalePoint,
-  scaleQuantile: scales.scaleQuantile,
-  scaleTime: scales.scaleTime,
+  scales: scales,
   shape: shape,
-  treemap: hierarchy.treemap,
-  stratify: hierarchy.stratify
+  hierarchy: hierarchy
 };
