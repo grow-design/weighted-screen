@@ -8,6 +8,7 @@ import {Component} from '@angular/core';
     :host {
       border: solid 1px #eee;
       border-bottom: solid 1px #ccc;
+      display: block;
     }
     `
   ]
