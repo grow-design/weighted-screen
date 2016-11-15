@@ -7,6 +7,7 @@ import {
 import d3 from './d3';
 
 import { WeightedScreenService } from './weighted-screen.service';
+import shuffle from './shuffle-array';
 
 @Component({
   selector: 'weighted-screen',
@@ -28,6 +29,7 @@ export class HelloWorld implements OnInit {
   nodesRoot: Object;
 
   @Input() nodesNumber: number = 10;
+  @Input() shuffle: boolean = true;
 
 
   constructor(private weightedScreenService: WeightedScreenService) {}
@@ -35,6 +37,10 @@ export class HelloWorld implements OnInit {
   getNodes(): void {
     this.weightedScreenService.getNodesByViews(this.nodesNumber).then(
       nodes => {
+        if (this.shuffle) {
+          shuffle.shuffle(nodes);
+        }
+
         let rootNodes = {
           "children": nodes
         };
