@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input
-} from '@angular/core';
-
+import { Component, ElementRef, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import d3 from './d3';
 
 import { WeightedScreenService } from './weighted-screen.service';
@@ -12,27 +7,33 @@ import shuffle from './shuffle-array';
 @Component({
   selector: 'weighted-screen',
   template: `
-  <div id="erd"></div>
+    <div id="erd"></div>
   `,
   styles: [
     `
       :host {
         position: relative;
+        height: 100%;
+      }
+
+      :host #erd {
+        min-height: 100vh;
       }
     `
-  ]
+  ],
+  encapsulation: ViewEncapsulation.Emulated
 })
 
-export class HelloWorld implements OnInit {
-  projectTitle: string = 'weighted screen';
-
-  nodesRoot: Object;
-
+export class WeightedScreen implements OnInit {
   @Input() nodesNumber: number = 10;
+  nodesRoot: Object;
+  projectTitle: string = 'weighted screen';
   @Input() shuffle: boolean = true;
 
-
-  constructor(private weightedScreenService: WeightedScreenService) {}
+  constructor(
+    private weightedScreenService: WeightedScreenService,
+    private element: ElementRef
+  ) {}
 
   getNodes(): void {
     this.weightedScreenService.getNodesByViews(this.nodesNumber).then(
@@ -45,22 +46,23 @@ export class HelloWorld implements OnInit {
           "children": nodes
         };
 
-        this.nodesRoot = rootNodes;
-
-         var width = 1400,
-      height = 600;
+      this.nodesRoot = rootNodes ;
 
       var color = d3.scales.scaleOrdinal()
-          .range(d3.scales.schemeCategory10
-              .map(function(c) { c = d3.color.rgb(c); c.opacity = 0.6; return c; }));
+          .range(
+            d3.scales.schemeCategory10.map(
+              function(c) { c = d3.color.rgb(c); c.opacity = 0.6; return c; })
+          );
 
       var root = d3.hierarchy.hierarchy(this.nodesRoot);
   
       root.sum(function(d) { return d.views});
 
+      let sizes = this.getParentSizes();
+
       var treemap = d3.hierarchy.treemap()
-          .size([width, height])
-          .padding(1);
+        .size([sizes.width, sizes.height])
+        .padding(2);
 
       treemap(root);
 
@@ -96,12 +98,19 @@ export class HelloWorld implements OnInit {
             })
           .style("text-align", "center")
           .style("background",
-            function(d) { 
-              return color(d.id); 
+            function(d, i) { 
+              return color(i); 
             })
         .append("div")
           .attr("class", "node-label")
-          .style("height", function(d) { return d.y1 - d.y0 + "px"; })
+          .style("height",
+            function(d) {
+              return d.y1 - d.y0 + "px";
+            })
+          .style("width",
+            function(d) {
+              return d.x1 - d.x0 + "px";
+            })
           .style("line-height", "inherit")
         .append('a')
           .attr("href", function(d){return d.data.url;})
@@ -109,10 +118,40 @@ export class HelloWorld implements OnInit {
             function(d) { 
               return d.data.name;
           })
+
+          d3.selectAll('.node').on('mouseover',function(){
+            d3.select(this).style('box-shadow','3px 0px 30px #fff');
+          });
+          d3.selectAll('.node').on('mouseout',function(){
+            d3.select(this).style('box-shadow','none');
+          });
       })
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getNodes();
   }
+
+  ngAfterViewInit(): void {
+    
+  }
+
+
+  getParentSizes() {
+    let height = 0;
+    let width = 0;
+
+    let hostElement = this.element.nativeElement;
+
+    if (hostElement.parentNode != null) {
+      height = hostElement.parentNode.clientHeight;
+      width = hostElement.parentNode.clientWidth;
+    }
+
+    return {
+      height: height,
+      width: width
+    };
+  }
+
 }
