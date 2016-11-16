@@ -29,6 +29,7 @@ export class WeightedScreen implements OnInit {
   nodesRoot: Object;
   projectTitle: string = 'weighted screen';
   @Input() shuffle: boolean = true;
+  @Input() handicap: number = 10;
 
   constructor(
     private weightedScreenService: WeightedScreenService,
@@ -36,7 +37,8 @@ export class WeightedScreen implements OnInit {
   ) {}
 
   getNodes(): void {
-    this.weightedScreenService.getNodesByViews(this.nodesNumber).then(
+    this.weightedScreenService.getNodesByViews(this.nodesNumber)
+    .then(
       nodes => {
         if (this.shuffle) {
           shuffle.shuffle(nodes);
@@ -46,27 +48,42 @@ export class WeightedScreen implements OnInit {
           "children": nodes
         };
 
-      this.nodesRoot = rootNodes ;
+        this.nodesRoot = rootNodes ;
 
-      var color = d3.scales.scaleOrdinal()
-          .range(
-            d3.scales.schemeCategory10.map(
-              function(c) { c = d3.color.rgb(c); c.opacity = 0.6; return c; })
-          );
+        this.update(this.handicap);
+      }
+    )
+  }
 
-      var root = d3.hierarchy.hierarchy(this.nodesRoot);
+  ngOnInit(): void {
+    this.getNodes();
+  }
+
+  ngAfterViewInit(): void {
+    
+  }
+
+  update(handicap: number) {
+    let colors = d3.scales.scaleOrdinal()
+        .range(
+          d3.scales.schemeCategory10.map(
+            function(c) { c = d3.color.rgb(c); c.opacity = 0.6; return c; }
+          )
+    );
+
+    let root = d3.hierarchy.hierarchy(this.nodesRoot);
   
-      root.sum(function(d) { return d.views});
+    root.sum(function(d) { return d.views});
 
-      let sizes = this.getParentSizes();
+    let sizes = this.getParentSizes(handicap);
 
-      var treemap = d3.hierarchy.treemap()
-        .size([sizes.width, sizes.height])
-        .padding(2);
+    let treemap = d3.hierarchy.treemap()
+      .size([sizes.width, sizes.height])
+      .padding(2);
 
-      treemap(root);
+    treemap(root);
 
-      d3.select("#erd")
+    d3.select("#erd")
           .selectAll(".node")
           .data(root.leaves())
           .enter()
@@ -99,7 +116,7 @@ export class WeightedScreen implements OnInit {
           .style("text-align", "center")
           .style("background",
             function(d, i) { 
-              return color(i); 
+              return colors(i); 
             })
         .append("div")
           .attr("class", "node-label")
@@ -125,19 +142,9 @@ export class WeightedScreen implements OnInit {
           d3.selectAll('.node').on('mouseout',function(){
             d3.select(this).style('box-shadow','none');
           });
-      })
   }
 
-  ngOnInit(): void {
-    this.getNodes();
-  }
-
-  ngAfterViewInit(): void {
-    
-  }
-
-
-  getParentSizes() {
+  getParentSizes(handicap: number) {
     let height = 0;
     let width = 0;
 
@@ -149,7 +156,7 @@ export class WeightedScreen implements OnInit {
     }
 
     return {
-      height: height,
+      height: height - handicap,
       width: width
     };
   }
