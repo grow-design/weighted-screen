@@ -32,12 +32,12 @@ Then use it in your app like so:
 
 ```typescript
 import {Component} from '@angular/core';
-import {HelloWorld} from 'weighted-screen';
+import {WeightedScreen} from 'weighted-screen';
 
 @Component({
   selector: 'demo-app',
-  directives: [HelloWorld],
-  template: '<hello-world></hello-world>'
+  directives: [WeightedScreen],
+  template: '<weighted-screen></weighted-screen>'
 })
 export class DemoApp {}
 ```
