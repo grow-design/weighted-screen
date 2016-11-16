@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'demo-app',
-  template: '<weighted-screen></weighted-screen>',
+  template: '<weighted-screen [handicap] = "100"></weighted-screen>',
   styles: [
     `
     :host {
