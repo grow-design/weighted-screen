@@ -20,6 +20,12 @@ module.exports = {
       commonjs: '@angular/common',
       commonjs2: '@angular/common',
       amd: '@angular/common'
+    },
+     '@angular/http': {
+      root: ['ng', 'http'],
+      commonjs: '@angular/http',
+      commonjs2: '@angular/http',
+      amd: '@angular/http'
     }
   },
   devtool: 'source-map',
