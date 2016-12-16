@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {WeightedScreen} from './weightedScreen.component';
-import { WeightedScreenService }   from './weighted-screen.service';
+import {WeightedScreen} from './weightedscreen.component';
+import { WeightedScreenService }   from './weightedscreen.service';
 
 @NgModule({
   declarations: [
@@ -9,6 +9,8 @@ import { WeightedScreenService }   from './weighted-screen.service';
   ],
   imports: [CommonModule],
   exports: [WeightedScreen],
-  providers: [WeightedScreenService]
+  providers: [
+      WeightedScreenService
+    ]
 })
 export class WeightedScreenModule {}
