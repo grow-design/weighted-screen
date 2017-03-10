@@ -1,6 +1,6 @@
 {
   "name": "weighted-screen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "./dist/umd/weighted-screen.js",
   "module": "./dist/esm/src/index.js",
