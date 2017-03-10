@@ -1,16 +1,16 @@
 /// <reference path='../node_modules/awesome-typescript-loader/lib/runtime.d.ts' />
 
-let array = require('d3-array');
-let brush = require('d3-brush');
-let color = require('d3-color');
-let force = require('d3-force');
-let format = require('d3-format');
-let interpolate = require('d3-interpolate');
-let request = require('d3-request');
-let scales = require('d3-scale');
-let selection = require('d3-selection');
-let shape = require('d3-shape');
-let hierarchy = require('d3-hierarchy');
+let array: any = require('d3-array');
+let brush: any = require('d3-brush');
+let color: any = require('d3-color');
+let force: any = require('d3-force');
+let format: any = require('d3-format');
+let interpolate: any = require('d3-interpolate');
+let request: any = require('d3-request');
+let scales: any = require('d3-scale');
+let selection: any = require('d3-selection');
+let shape: any = require('d3-shape');
+let hierarchy: any = require('d3-hierarchy');
 
 export default {
   arc: shape.arc,

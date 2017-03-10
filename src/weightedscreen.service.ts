@@ -25,7 +25,7 @@ export class WeightedScreenService {
             .catch(this.handleError);
     }
 
-    private handleError(error: Response) {
+    private handleError(error: Response): Observable<Node[]> {
         console.error(error);
 
         return Observable.throw(error.json().error || 'Server error');

@@ -78,17 +78,17 @@ export class WeightedScreen implements OnInit {
             )
         );
 
-        let root = d3.hierarchy.hierarchy(this.nodesRoot);
+        let root: any = d3.hierarchy.hierarchy(this.nodesRoot);
 
         root.sum(
-            function(d) {
+            function(d: any): any {
                 return d.views;
             }
         );
 
-        let sizes = this.getParentSizes();
+        let sizes: any = this.getParentSizes();
 
-        let treemap = d3.hierarchy.treemap()
+        let treemap: any = d3.hierarchy.treemap()
         .size(
             [sizes.width, sizes.height]
         )
@@ -96,7 +96,7 @@ export class WeightedScreen implements OnInit {
 
         treemap(root);
 
-        let node = d3.select('#erd').html('');
+        let node: any = d3.select('#erd').html('');
 
         node.selectAll('.node')
             .data(root.leaves())
@@ -104,54 +104,54 @@ export class WeightedScreen implements OnInit {
         .append('div')
             .attr('class', 'node')
             .attr('title',
-                function(d) {
+                function(d: any): any {
                     return d.id;
                 })
             .style('left',
-                function(d) {
+                function(d: any): any {
                     return d.x0 + 'px';
                 })
             .style('top',
-                function(d) {
+                function(d: any): any {
                     return d.y0 + 'px';
                 })
             .style('width',
-                function(d) {
+                function(d: any): any {
                     return d.x1 - d.x0 + 'px';
                 })
             .style('height',
-                function(d) {
+                function(d: any): any {
                     return d.y1 - d.y0 + 'px';
                 })
             .style('line-height',
-                function(d) {
+                function(d: any): any {
                     return d.y1 - d.y0 + 'px';
                 })
             .style('text-align', 'center')
             .style('background',
-                function(d, i) {
+                function(d: any, i: any): any {
                     return colors(i);
                 })
         .append('div')
             .attr('class', 'node-label')
             .style('height',
-                function(d) {
+                function(d: any): any {
                     return d.y1 - d.y0 + 'px';
                 })
             .style('width',
-                function(d) {
+                function(d: any): any {
                     return d.x1 - d.x0 + 'px';
                 })
             .style('line-height', 'inherit')
         .append('a')
             .attr(
                 'href',
-                function(d) {
+                function(d: any): any {
                     return d.data.url;
                 }
             )
             .text(
-                function(d) {
+                function(d: any): any {
                     return d.data.name;
                 }
             );
@@ -159,7 +159,7 @@ export class WeightedScreen implements OnInit {
         d3.selectAll('.node')
             .on(
                 'mouseover',
-                function() {
+                function(): any {
                     d3.select(this).style('box-shadow', '3px 0px 30px #fff');
                 }
             );
@@ -167,17 +167,17 @@ export class WeightedScreen implements OnInit {
         d3.selectAll('.node')
             .on(
                 'mouseout',
-                function() {
+                function(): any {
                     d3.select(this).style('box-shadow', 'none');
                 }
             );
     }
 
-    getParentSizes() {
-        let height = 0;
-        let width = 0;
+    getParentSizes(): any {
+        let height: number = 0;
+        let width: number = 0;
 
-        let hostElement = this.element.nativeElement;
+        let hostElement: any = this.element.nativeElement;
 
         if (hostElement.parentNode != null) {
             height = hostElement.parentNode.clientHeight;
@@ -197,8 +197,8 @@ export class WeightedScreen implements OnInit {
     private bindResizeEvent(): void {
         this.zone.runOutsideAngular(
             () => {
-                let source = Observable.fromEvent(window, 'resize', null, null);
-                let subscription = source.debounceTime(100).subscribe(
+                let source: any = Observable.fromEvent(window, 'resize', null, null);
+                let subscription: any = source.debounceTime(100).subscribe(
                     () => {
                         this.zone.run(
                             () => {
