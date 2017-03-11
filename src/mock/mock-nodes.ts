@@ -1,3 +1,6 @@
+import { Node } from '../node.model';
+
+export const NODES: Node[] = 
 [
     { "id": 3, "name": "A Day in the Life of a Product Owner", "views": 48, "url": "https://grow.liferay.com/group/guest/learn/-/wiki/Grow/A+Day+in+the+Life+of+a+Product+Owner" },
     { "id": 4, "name": "Advanced System Architecture", "views": 21, "url": "https://grow.liferay.com/group/guest/learn/-/wiki/Grow/Advanced+System+Architecture" },

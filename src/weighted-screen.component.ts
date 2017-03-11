@@ -2,11 +2,11 @@ import { Component, ElementRef, Input, NgZone, OnInit, ViewEncapsulation } from 
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Node } from './node.model';
-import { WeightedScreenService } from './weightedscreen.service';
+import { WeightedScreenService } from './weighted-screen.service';
 import { Configuration } from './util/configuration';
 
-import d3 from './d3';
-import shuffle from './shuffle-array';
+import { d3 } from 'd3';
+import { shuffle } from 'shuffle-array';
 
 @Component({
     selector: 'weighted-screen',
@@ -28,7 +28,7 @@ import shuffle from './shuffle-array';
     encapsulation: ViewEncapsulation.Emulated
 })
 
-export class WeightedScreen implements OnInit {
+export class WeightedScreenComponent implements OnInit {
     @Input() nodesNumber: number = 10;
     nodesRoot: Object;
     projectTitle: string = 'weighted screen';
@@ -72,7 +72,7 @@ export class WeightedScreen implements OnInit {
         let colors: any = d3.scales.scaleOrdinal()
         .range(
             d3.scales.schemeCategory10.map(
-                (c) => {
+                (c: any) => {
                     c = d3.color.rgb(c); c.opacity = 0.6; return c;
                 }
             )
