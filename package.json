@@ -25,6 +25,10 @@
   },
   "main": "./dist/index.js",
   "homepage": "https://github.com/grow-design/weighted-screen#readme",
+  "dependencies": {
+    "d3": "^4.7.2",
+    "shuffle-array": "^1.0.1"
+  },
   "devDependencies": {
     "@angular/common": "^2.4.9",
     "@angular/compiler": "^2.4.9",
@@ -38,9 +42,7 @@
     "@types/selenium-webdriver": "^2.53.39",
     "awesome-typescript-loader": "^3.1.2",
     "codelyzer": "^3.0.0-beta.0",
-    "d3": "^4.7.2",
     "rxjs": "^5.0.1",
-    "shuffle-array": "^1.0.1",
     "tslint": "^4.5.1",
     "typescript": "^2.0.2",
     "zone.js": "0.7.2"
