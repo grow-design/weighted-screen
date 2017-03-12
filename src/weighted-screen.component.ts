@@ -48,7 +48,7 @@ export class WeightedScreenComponent implements OnInit {
         .subscribe(
             (data: Array<Node>) => {
                 if (this.shuffle) {
-                    shuffle.shuffle(data);
+                    shuffle(data);
                 }
 
                 this.nodesRoot = {
