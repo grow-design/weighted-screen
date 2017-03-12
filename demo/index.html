@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>weighted screen</title>
+    <style>
+
+      body {
+        font: 10px sans-serif;
+        position: relative;
+      }
+
+      .node {
+        box-sizing: border-box;
+        position: absolute;
+        overflow: hidden;
+      }
+
+      .node-label {
+        color: #fff;
+        font-size: 14px;
+        padding: 4px;
+        white-space: pre;
+      }
+
+      .node-label a {
+         color: #fff;
+      }
+
+      .node-value {
+        color: rgba(0,0,0,0.8);
+        font-size: 9px;
+        margin-top: 1px;
+      }
+
+</style>
+  </head>
+  <body>
+
+    <a href="https://github.com/grow-design/weighted-screen" class="hidden-xs">
+    </a>
+
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">weighted screen</a>
+        </div>
+        <ul class="nav navbar-nav hidden-xs">
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="https://github.com/grow-design/weighted-screen#installation">Installation</a></li>
+          <li><a href="https://grow-design.github.io/weighted-screen/docs/">Documentation</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid" id="demo">
+      <demo-app>Loading demo...</demo-app>
+    </div>
+
+    <script src="demo.js" async></script>
+
+  </body>
+</html>
