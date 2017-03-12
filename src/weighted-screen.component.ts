@@ -6,7 +6,7 @@ import { WeightedScreenService } from './weighted-screen.service';
 import { Configuration } from './util/configuration';
 
 import { d3 } from 'd3';
-import { shuffle } from 'shuffle-array';
+import shuffle from 'shuffle-array';
 
 @Component({
     selector: 'weighted-screen',
@@ -32,7 +32,7 @@ export class WeightedScreenComponent implements OnInit {
     @Input() nodesNumber: number = 10;
     nodesRoot: Object;
     projectTitle: string = 'weighted screen';
-    @Input() shuffle: boolean = true;
+    @Input() shuffled: boolean = true;
     @Input() handicap: number = 10;
     resizeSubscription: any;
     @Input() configuration: Configuration;
@@ -47,7 +47,7 @@ export class WeightedScreenComponent implements OnInit {
         this.weightedScreenService.getNodesByViews(this.nodesNumber)
         .subscribe(
             (data: Array<Node>) => {
-                if (this.shuffle) {
+                if (this.shuffled) {
                     shuffle(data);
                 }
 
