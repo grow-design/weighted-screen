@@ -25,7 +25,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { SampleModule } from 'weighted-screen';
+import { WeightedScreenModule } from 'weighted-screen';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,7 @@ import { SampleModule } from 'weighted-screen';
   imports: [
     BrowserModule,
 
-    // Specify your library as an import
-    LibraryModule
+    WeightedScreenModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
