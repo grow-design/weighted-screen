@@ -69,16 +69,16 @@ export class WeightedScreenComponent implements OnInit {
     }
 
     update(): void {
-        let colors: any = d3.scales.scaleOrdinal()
+        let colors: any = d3.scaleOrdinal()
         .range(
-            d3.scales.schemeCategory10.map(
+            d3.schemeCategory10.map(
                 (c: any) => {
-                    c = d3.color.rgb(c); c.opacity = 0.6; return c;
+                    c = d3.rgb(c); c.opacity = 0.6; return c;
                 }
             )
         );
 
-        let root: any = d3.hierarchy.hierarchy(this.nodesRoot);
+        let root: any = d3.hierarchy(this.nodesRoot);
 
         root.sum(
             function(d: any): any {
@@ -88,7 +88,7 @@ export class WeightedScreenComponent implements OnInit {
 
         let sizes: any = this.getParentSizes();
 
-        let treemap: any = d3.hierarchy.treemap()
+        let treemap: any = d3.treemap()
         .size(
             [sizes.width, sizes.height]
         )
