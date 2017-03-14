@@ -5,8 +5,8 @@ import { Node } from './node.model';
 import { WeightedScreenService } from './weighted-screen.service';
 import { Configuration } from './util/configuration';
 
-import { d3 } from 'd3';
-import shuffle from 'shuffle-array';
+import * as d3 from 'd3';
+import * as shuffle from 'shuffle-array';
 
 @Component({
     selector: 'weighted-screen',
